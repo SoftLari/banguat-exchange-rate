@@ -1,163 +1,119 @@
-# Banguat Exchange Rate
+# @softlari/banguat-exchange-rate
 
-A TypeScript library for accessing the Banguat (Guatemalan Central Bank) exchange rate SOAP service.
+TypeScript library for accessing Banguat (Guatemalan Central Bank) exchange rate SOAP service.
 
 ## Installation
 
 ```bash
-# Install as a library
-npm install banguat-exchange-rate
-
-# Install globally to use the CLI
-npm install -g banguat-exchange-rate
+npm install @softlari/banguat-exchange-rate
 ```
 
-## Library Usage
+## Features
+
+- 🔄 Real-time exchange rates from Banguat
+- 📅 Historical exchange rates by date
+- 📊 Monthly averages
+- 🌐 Timezone aware (Guatemala UTC-6)
+- 💻 CLI tool included
+- 📘 Full TypeScript support
+
+## Usage
+
+### As a Library
 
 ```typescript
-import { BanguatService } from "banguat-exchange-rate";
+import { BanguatService } from "@softlari/banguat-exchange-rate";
 
-// Create a new instance
-const service = new BanguatService();
+const banguat = new BanguatService();
 
 // Get current exchange rate
-const currentRate = await service.getCurrentRate();
-console.log(currentRate);
-// {
-//   date: Date,
-//   buyRate: number,
-//   sellRate: number
-// }
+const current = await banguat.getCurrentRate();
+console.log(`Current rate: ${current.buyRate}`);
 
-// Get exchange rate for a specific date
-const specificDate = new Date("2024-01-15");
-const rateForDay = await service.getRateForDay(specificDate);
-console.log(rateForDay);
-// {
-//   date: Date,
-//   buyRate: number,
-//   sellRate: number
-// }
-
-// Get exchange rates for a date range
-const startDate = new Date("2024-01-01");
-const endDate = new Date("2024-01-31");
-const rates = await service.getRateRange(startDate, endDate);
-console.log(rates);
-// {
-//   startDate: Date,
-//   endDate: Date,
-//   rates: [
-//     {
-//       date: Date,
-//       buyRate: number,
-//       sellRate: number
-//     },
-//     ...
-//   ]
-// }
+// Get rate for specific date
+const date = new Date("2024-03-01");
+const historical = await banguat.getRateForDay(date);
+console.log(`Rate for ${date.toISOString()}: ${historical.buyRate}`);
 
 // Get monthly average
-const average = await service.getMonthlyAverage(2024, 1);
-console.log(average);
-// {
-//   year: number,
-//   month: number,
-//   average: number
-// }
+const average = await banguat.getMonthlyAverage(2024, 3);
+console.log(`March 2024 average: ${average}`);
 ```
 
-## CLI Usage
-
-The package includes a command-line interface for quick access to exchange rates.
+### Using the CLI
 
 ```bash
-# Get current exchange rate
+# Install globally
+npm install -g @softlari/banguat-exchange-rate
+
+# Get current rate
 banguat current
 
-# Get exchange rate for a specific date
-banguat date 2024-03-20
+# Get rate for specific date
+banguat date 2024-03-01
 
-# Get exchange rates for a date range
+# Get rates for date range
 banguat range 2024-03-01 2024-03-31
 
 # Get monthly average
 banguat average 2024 3
 ```
 
-Example output:
-
-```
-$ banguat current
-Exchange rate for 2024-03-20:
-Buy: Q7.8512
-Sell: Q7.8512
-
-$ banguat date 2024-03-01
-Exchange rate for 2024-03-01:
-Buy: Q7.8500
-Sell: Q7.8300
-
-$ banguat range 2024-03-01 2024-03-02
-Exchange rates from 2024-03-01 to 2024-03-02:
-
-2024-03-01:
-Buy: Q7.8500
-Sell: Q7.8300
-
-2024-03-02:
-Buy: Q7.8600
-Sell: Q7.8400
-
-$ banguat average 2024 3
-Average exchange rate for 2024-03:
-Q7.8512
-```
-
-## Configuration
-
-You can configure the service with custom options:
-
-```typescript
-const service = new BanguatService({
-  endpoint: "custom-endpoint", // Optional: Custom SOAP endpoint
-  timeout: 5000, // Optional: Custom timeout in milliseconds
-});
-```
-
-## API
+## API Reference
 
 ### `getCurrentRate()`
 
-Gets the current exchange rate.
+Returns the current exchange rate.
+
+```typescript
+interface ExchangeRateDay {
+  date: Date;
+  buyRate: number;
+  sellRate: number;
+}
+```
 
 ### `getRateForDay(date: Date)`
 
-Gets the exchange rate for a specific date. Throws an error if no rate is found for the specified date.
+Returns the exchange rate for a specific date.
 
 ### `getRateRange(startDate: Date, endDate: Date)`
 
-Gets exchange rates for a specific date range.
+Returns exchange rates for a date range.
 
 ### `getMonthlyAverage(year: number, month: number)`
 
-Gets the monthly average exchange rate for a specific year and month.
+Returns the average exchange rate for a specific month.
+
+## Error Handling
+
+The library includes proper error handling for:
+
+- Future dates (not allowed)
+- Invalid responses from the service
+- Missing data scenarios
+- Network errors
 
 ## Development
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Run tests: `npm test`
-4. Build: `npm run build`
+```bash
+# Clone the repository
+git clone https://github.com/SoftLari/banguat-exchange-rate.git
 
-## License
+# Install dependencies
+npm install
 
-MIT
+# Run tests
+npm test
+
+# Build
+npm run build
+```
 
 ## Contributing
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT © SoftLari
