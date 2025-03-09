@@ -1,5 +1,5 @@
 {
-  "name": "banguat-exchange-rate",
+  "name": "@softlari/banguat-exchange-rate",
   "version": "1.0.0",
   "description": "TypeScript library for accessing Banguat (Guatemalan Central Bank) exchange rate SOAP service",
   "main": "dist/index.js",
@@ -12,7 +12,9 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm test",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "banguat",
