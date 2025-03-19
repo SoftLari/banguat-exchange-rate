@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.5 "Quetzal's Precision" - 2024-03-20
+
+### Bug Fixes
+
+- Fixed date handling in tests to ensure consistent timezone behavior
+- Updated test assertions to match UTC date formatting
+- Improved test suite reliability for date-dependent operations
+
 ## 1.0.4 "Quetzal's Patch" - 2024-03-20
 
 ### Bug Fixes
