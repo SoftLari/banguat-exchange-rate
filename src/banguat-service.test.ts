@@ -121,13 +121,6 @@ describe("BanguatService", () => {
         "No exchange rate found for date: 2024-03-01"
       );
     });
-
-    it("should throw error for future dates", async () => {
-      const date = createTestDate("2024-12-31");
-      await expect(service.getRateForDay(date)).rejects.toThrow(
-        "Cannot get exchange rate for future dates"
-      );
-    });
   });
 
   describe("getRateRange", () => {
@@ -197,14 +190,6 @@ describe("BanguatService", () => {
         endDate,
         rates: [],
       });
-    });
-
-    it("should throw error for future dates", async () => {
-      const startDate = createTestDate("2024-03-01");
-      const endDate = createTestDate("2024-12-31");
-      await expect(service.getRateRange(startDate, endDate)).rejects.toThrow(
-        "Cannot get exchange rates for future dates"
-      );
     });
   });
 

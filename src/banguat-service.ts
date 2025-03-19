@@ -32,9 +32,9 @@ export class BanguatService {
   }
 
   private formatDateForRequest(date: Date): string {
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
+    const day = String(date.getUTCDate()).padStart(2, "0");
+    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+    const year = date.getUTCFullYear();
     return `${day}/${month}/${year}`;
   }
 
@@ -93,14 +93,6 @@ export class BanguatService {
    * @throws Error if no rate is found for the specified date or if date is in the future
    */
   async getRateForDay(date: Date): Promise<ExchangeRateDay> {
-    // Validate date is not in the future
-    const today = new Date();
-    today.setUTCHours(0, 0, 0, 0);
-
-    if (date > today) {
-      throw new Error("Cannot get exchange rate for future dates");
-    }
-
     const result = await this.getRateRange(date, date);
     if (result.rates.length === 0) {
       throw new Error(
@@ -120,14 +112,6 @@ export class BanguatService {
     startDate: Date,
     endDate: Date
   ): Promise<ExchangeRateRange> {
-    // Validate dates are not in the future
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    if (startDate > today || endDate > today) {
-      throw new Error("Cannot get exchange rates for future dates");
-    }
-
     try {
       const client = await this.getClient();
       const [result] = await client.TipoCambioRangoAsync({
