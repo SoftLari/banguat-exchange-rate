@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.4 "Quetzal's Patch" - 2024-03-20
+
+### Bug Fixes
+
+- Fixed service client initialization to handle SOAP responses correctly
+- Improved UTC date handling for Guatemala timezone
+
 ## 1.0.3 "Quetzal Takes Flight" - 2024-03-20
 
 ### Documentation
