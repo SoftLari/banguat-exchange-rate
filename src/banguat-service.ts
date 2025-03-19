@@ -95,7 +95,7 @@ export class BanguatService {
   async getRateForDay(date: Date): Promise<ExchangeRateDay> {
     // Validate date is not in the future
     const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    today.setUTCHours(0, 0, 0, 0);
 
     if (date > today) {
       throw new Error("Cannot get exchange rate for future dates");
