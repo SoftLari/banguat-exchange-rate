@@ -1,6 +1,6 @@
 {
   "name": "@softlari/banguat-exchange-rate",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "TypeScript library for accessing Banguat (Guatemalan Central Bank) exchange rate SOAP service",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -46,8 +46,6 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "soap": "^1.1.9",
-    "strong-soap": "^4.1.9",
-    "xml2js": "^0.6.2"
+    "soap": "^1.9.1"
   }
 }

@@ -25,6 +25,9 @@ yarn-error.log*
 # Coverage directory
 coverage/
 
+# Dependency audit reports
+.dependency-audit/
+
 # OS
 .DS_Store
 Thumbs.db 
