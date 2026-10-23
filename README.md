@@ -5,7 +5,7 @@ TypeScript library for accessing Banguat (Guatemalan Central Bank) exchange rate
 ## Installation
 
 Requires a patched Node.js LTS release: **22.23.4+ (22.x)** or **24.22.1+ (24.x)**.
-Node.js **24 LTS** is recommended; `.nvmrc` pins the current security baseline.
+Node.js **24 LTS** is recommended; `mise.toml` pins the current security baseline.
 Node.js 18 and 20 are no longer supported.
 
 ```bash
@@ -100,25 +100,27 @@ The library includes proper error handling for:
 
 ## Development
 
+Install [mise](https://mise.jdx.dev/getting-started.html) first. The commands below
+use the project's Node.js version without requiring shell activation.
+
 ```bash
 # Clone the repository
 git clone https://github.com/SoftLari/banguat-exchange-rate.git
 
-# Use the recommended Node.js version (with nvm)
-nvm install
-nvm use
+# Install the Node.js version pinned in mise.toml
+mise install
 
 # Install the locked dependencies (npm is the project's package manager)
-npm ci
+mise exec -- npm ci
 
 # Check all dependencies, including development tools
-npm audit
+mise exec -- npm audit
 
 # Run tests
-npm test
+mise exec -- npm test
 
 # Build
-npm run build
+mise exec -- npm run build
 ```
 
 ### Security maintenance
