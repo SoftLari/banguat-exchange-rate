@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "target": "es2018",
-    "module": "commonjs",
+    "module": "Node16",
     "declaration": true,
     "outDir": "./dist",
     "strict": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node16",
+    "types": ["node", "jest"],
     "resolveJsonModule": true,
     "sourceMap": true,
     "rootDir": "./src"
