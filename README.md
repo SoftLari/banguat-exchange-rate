@@ -4,6 +4,10 @@ TypeScript library for accessing Banguat (Guatemalan Central Bank) exchange rate
 
 ## Installation
 
+Requires a patched Node.js LTS release: **22.23.4+ (22.x)** or **24.22.1+ (24.x)**.
+Node.js **24 LTS** is recommended; `.nvmrc` pins the current security baseline.
+Node.js 18 and 20 are no longer supported.
+
 ```bash
 npm install @softlari/banguat-exchange-rate
 ```
@@ -100,8 +104,15 @@ The library includes proper error handling for:
 # Clone the repository
 git clone https://github.com/SoftLari/banguat-exchange-rate.git
 
-# Install dependencies
-npm install
+# Use the recommended Node.js version (with nvm)
+nvm install
+nvm use
+
+# Install the locked dependencies (npm is the project's package manager)
+npm ci
+
+# Check all dependencies, including development tools
+npm audit
 
 # Run tests
 npm test
@@ -109,6 +120,16 @@ npm test
 # Build
 npm run build
 ```
+
+### Security maintenance
+
+CI tests the latest Node.js 22 and 24 releases and blocks testing/publication when
+`npm audit` reports known vulnerabilities. Dependabot checks npm dependencies and
+GitHub Actions weekly. `package-lock.json` is the only maintained lockfile.
+
+The runtime baseline includes the [October 2026 Node.js security fixes](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases).
+Keep production Node.js installations updated too: updating this library does not
+upgrade the runtime on your server.
 
 ## Contributing
 
