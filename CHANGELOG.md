@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.0.0 - 2026-10-23
+
+### Breaking Changes
+
+- Require a patched Node.js LTS release: 22.23.4+ (22.x) or 24.22.1+ (24.x). Node.js 18 and 20 are no longer supported.
+- Use npm as the maintained package manager; remove the unused Yarn lockfile.
+
+### Security
+
+- Update SOAP, Jest, ts-jest, TypeScript, type definitions, and transitive dependencies to resolve known vulnerabilities.
+- Require dependency audits before testing and publishing, pin GitHub Actions by commit, and add weekly Dependabot updates.
+
+### Development
+
+- Pin Node.js 24.22.1 in `mise.toml` and document development commands using mise.
+- Add a real SOAP integration test covering WSDL loading, HTTP transport, and XML parsing.
+- Preserve the public library and CLI APIs.
+
 ## 1.0.5 "Quetzal's Precision" - 2024-03-20
 
 ### Bug Fixes
